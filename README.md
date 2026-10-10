@@ -41,6 +41,7 @@ koboku-line-bot/
 ├─ public/
 │  └─ robots.txt        … 検索エンジンに載らないようにする設定
 ├─ .env.example         … 環境変数のサンプル（本物の値は書かない）
+├─ .gitattributes       … 改行コードの設定
 ├─ .gitignore           … GitHubに上げないファイルの指定
 ├─ .vercelignore        … Vercelに上げないファイルの指定
 ├─ package.json
