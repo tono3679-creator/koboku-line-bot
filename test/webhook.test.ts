@@ -90,12 +90,21 @@ describe('購入後のご案内の自動返信', () => {
     assert.equal(sent.messages[0].type, 'text');
     assert.equal(sent.messages[0].text, PURCHASE_GUIDE_TEXT);
 
-    // クイックリプライは最後のメッセージに付いていること
-    const last = sent.messages.at(-1);
-    assert.deepEqual(last.quickReply, {
-      items: [{ type: 'action', action: { type: 'cameraRoll', label: PHOTO_BUTTON_LABEL } }],
+    // 2通目は、メッセージの中に「写真を選ぶ」ボタンがあること（消えないボタン）
+    const photo = sent.messages[1];
+    assert.equal(photo.type, 'flex');
+    assert.ok(photo.altText.includes(PHOTO_BUTTON_LABEL));
+    assert.equal(photo.quickReply, undefined, 'すぐ消えるクイックリプライは使わない');
+
+    const button = photo.contents.body.contents.find((c: { action?: unknown }) => c.action);
+    // LINEアプリ内でカメラロール（複数枚選択）を開く。外部サイトのURLではないこと
+    assert.deepEqual(button.action, {
+      type: 'uri',
+      label: PHOTO_BUTTON_LABEL,
+      uri: 'https://line.me/R/nv/cameraRoll/multi',
     });
-    assert.ok(sent.messages.length <= 5, '1回の返信は5通まで');
+    assert.ok(button.contents[0].text.includes(PHOTO_BUTTON_LABEL));
+    assert.equal(sent.messages.length, 2);
   });
 
   it('前後に空白や改行が付いていても返信する', async () => {
