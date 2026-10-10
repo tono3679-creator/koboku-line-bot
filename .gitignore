@@ -1,0 +1,13 @@
+# 依存パッケージ
+node_modules/
+
+# 秘密情報（Channel Secret / Channel Access Token）を入れるファイル。絶対にGitHubに上げない
+.env
+.env.*
+!.env.example
+
+# Vercel のローカル設定・ビルド結果
+.vercel/
+
+# ログ
+*.log

@@ -1,0 +1,8 @@
+# Vercel にアップロードしないファイル
+# （このファイルがあると .gitignore は参照されないため、秘密情報のファイルもここに書いています）
+.env
+.env.*
+node_modules
+.git
+test
+README.md

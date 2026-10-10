@@ -1,0 +1,21 @@
+{
+  "name": "koboku-line-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "こぼく工房 LINE公式アカウント用：「購入後のご案内」自動返信 Webhook",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --import tsx --test \"test/**/*.test.ts\""
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^11.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
